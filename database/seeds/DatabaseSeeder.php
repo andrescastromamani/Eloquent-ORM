@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class, 5)->create()->each( function ($user){
             $profile = $user->profile()->save(factory(App\Profile::class)->make());
 
-            $profile = location()->save(factory(App\Location::class)->make());
+            $profile->location()->save(factory(App\Location::class)->make());
 
-            $user = groups()->attach($this->array(rand(1,3)));
+            $user->groups()->attach($this->array(rand(1,3)));
 
-            $user = image()->save(factory(App\Image::class)->make([
+            $user->image()->save(factory(App\Image::class)->make([
                 'url' => 'https://lorempixel.com/90/90/'
             ]));
         });
