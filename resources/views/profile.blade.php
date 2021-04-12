@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container shadow">
         <div class="row">
             <div class="col mt-3 shadow">
                 <img src="{{ $user->image->url }}" alt="image" class="float-left rounded-circle">
@@ -42,6 +42,67 @@
                 @endforelse
                 </p>
             </div>
+        </div>
+
+        <h2 class="color-white">Post</h2>
+        <div class="row">
+            @foreach ($posts as $post)
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{$post->image->url}}" alt="" class="card-img">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+
+                                <h5 class="card-title">{{$post->name}}</h5>
+                                <h6 class="card-subtitle">
+                                    {{$post->category->name}} |
+                                    {{$post->comments_count}} 
+                                    {{Str::plural('comentario'), $post->comments_count}} 
+                                </h6>
+                                <p class="card-text">
+                                    @foreach ($post->tags as $tag)
+                                    <span>#{{$tag->name}}</span>
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <h2>Videos</h2>
+        <div class="row">
+            @foreach ($videos as $video)
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{$video->image->url}}" alt="" class="card-img">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$video->name}}</h5>
+                                <h6 class="card-subtitle">
+                                    {{$video->category->name}} |
+                                    {{$video->comments_count}} 
+                                    {{Str::plural('comentario'), $video->comments_count}} 
+                                </h6>
+                                <p class="card-text">
+                                    @foreach ($video->tags as $tag)
+                                    <span>#{{$tag->name}}</span>
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </body>
